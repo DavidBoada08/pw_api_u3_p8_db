@@ -1,0 +1,5 @@
+# Created at 2025-06-19T17:45:04.543
+Boot Manifest-JAR contains absolute paths in classpath 'D:\UCE\2025uce\ProWeb\pw_api_u3_p8_db\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+'other' has different root
+
