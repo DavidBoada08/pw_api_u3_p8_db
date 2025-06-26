@@ -1,5 +1,7 @@
 package uce.edu.web.api.controller;
 
+import java.util.List;
+
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
@@ -18,6 +20,10 @@ public class ProfesorController {
         return this.profesorService.buscarPorId(id);
 
     }
-
+    @GET
+    @Path("")
+    public List<Profesor> consultarTodos() {
+        return this.profesorService.buscarTodos();
+    }
 
 }
