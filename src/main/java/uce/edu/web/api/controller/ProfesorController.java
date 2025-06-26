@@ -13,9 +13,11 @@ public class ProfesorController {
     private IProfesorService profesorService;
 
     @GET
-    @Path("/consultar/{id}")
+    @Path("/{id}")
     public Profesor consultarPorId(@PathParam("id") Integer id) {
         return this.profesorService.buscarPorId(id);
 
     }
+
+
 }
