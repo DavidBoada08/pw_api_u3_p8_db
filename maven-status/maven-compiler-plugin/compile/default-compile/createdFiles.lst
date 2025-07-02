@@ -1,0 +1,14 @@
+uce\edu\web\api\repository\modelo\Estudiante.class
+uce\edu\web\api\repository\IProfesorRepo.class
+uce\edu\web\api\MyEntity.class
+uce\edu\web\api\controller\ProfesorController.class
+uce\edu\web\api\GreetingResource.class
+uce\edu\web\api\repository\modelo\Profesor.class
+uce\edu\web\api\service\EstudianteServiceImpl.class
+uce\edu\web\api\repository\IEstudianteRepo.class
+uce\edu\web\api\service\ProfesorServiceImpl.class
+uce\edu\web\api\service\IEstudianteService.class
+uce\edu\web\api\repository\ProfesorRepoImpl.class
+uce\edu\web\api\controller\EstudianteController.class
+uce\edu\web\api\service\IProfesorService.class
+uce\edu\web\api\repository\EstudianteRepoImpl.class

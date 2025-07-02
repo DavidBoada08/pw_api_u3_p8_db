@@ -1,0 +1,14 @@
+D:\UCE\2025uce\ProWeb\pw_api_u3_p8_db\src\main\java\uce\edu\web\api\controller\EstudianteController.java
+D:\UCE\2025uce\ProWeb\pw_api_u3_p8_db\src\main\java\uce\edu\web\api\controller\ProfesorController.java
+D:\UCE\2025uce\ProWeb\pw_api_u3_p8_db\src\main\java\uce\edu\web\api\GreetingResource.java
+D:\UCE\2025uce\ProWeb\pw_api_u3_p8_db\src\main\java\uce\edu\web\api\MyEntity.java
+D:\UCE\2025uce\ProWeb\pw_api_u3_p8_db\src\main\java\uce\edu\web\api\repository\EstudianteRepoImpl.java
+D:\UCE\2025uce\ProWeb\pw_api_u3_p8_db\src\main\java\uce\edu\web\api\repository\IEstudianteRepo.java
+D:\UCE\2025uce\ProWeb\pw_api_u3_p8_db\src\main\java\uce\edu\web\api\repository\IProfesorRepo.java
+D:\UCE\2025uce\ProWeb\pw_api_u3_p8_db\src\main\java\uce\edu\web\api\repository\modelo\Estudiante.java
+D:\UCE\2025uce\ProWeb\pw_api_u3_p8_db\src\main\java\uce\edu\web\api\repository\modelo\Profesor.java
+D:\UCE\2025uce\ProWeb\pw_api_u3_p8_db\src\main\java\uce\edu\web\api\repository\ProfesorRepoImpl.java
+D:\UCE\2025uce\ProWeb\pw_api_u3_p8_db\src\main\java\uce\edu\web\api\service\EstudianteServiceImpl.java
+D:\UCE\2025uce\ProWeb\pw_api_u3_p8_db\src\main\java\uce\edu\web\api\service\IEstudianteService.java
+D:\UCE\2025uce\ProWeb\pw_api_u3_p8_db\src\main\java\uce\edu\web\api\service\IProfesorService.java
+D:\UCE\2025uce\ProWeb\pw_api_u3_p8_db\src\main\java\uce\edu\web\api\service\ProfesorServiceImpl.java
