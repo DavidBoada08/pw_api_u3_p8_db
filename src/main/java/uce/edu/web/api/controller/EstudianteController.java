@@ -1,10 +1,9 @@
 package uce.edu.web.api.controller;
- 
+
 import java.util.List;
- 
+
 import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 import org.eclipse.microprofile.openapi.annotations.Operation;
-
 
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
@@ -21,75 +20,75 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import uce.edu.web.api.repository.modelo.Estudiante;
 import uce.edu.web.api.service.IEstudianteService;
- 
+
 @Path("/estudiantes")
 public class EstudianteController {
- 
+
     @Inject
     private IEstudianteService estudianteService;
- 
+
     @GET
+
     @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
     public Response consultarEstudiantePorId(@PathParam("id") Integer id) {
 
-        return Response.status(227).entity( this.estudianteService.buscarPorId(id)).build();
+        return Response.status(227).entity(this.estudianteService.buscarPorId(id)).build();
     }
- 
- 
-    //?genero=F&provincia=pichincha
+
+    // ?genero=F&provincia=pichincha
     @GET
     @Path("")
     @Produces(MediaType.APPLICATION_JSON)
-    @Operation(
-        summary = "Consultar Estudiantes",
-        description = "Este endpoint obtiene una lista de todos los estudiantes"
-    )
-    public Response consultarEstudiantes(@QueryParam("genero")  String genero, @QueryParam("provincia") String provincia) {
+    @Operation(summary = "Consultar Estudiantes", description = "Este endpoint obtiene una lista de todos los estudiantes")
+    public Response consultarEstudiantes(@QueryParam("genero") String genero,
+            @QueryParam("provincia") String provincia) {
         System.out.println(provincia);
         return Response.status(Response.Status.OK).entity(this.estudianteService.buscarTodos(genero)).build();
- 
-        
+
     }
- 
+
     @POST
     @Path("")
     @Consumes(MediaType.APPLICATION_JSON)
-    @Operation(
-        summary = "Guardar Estudiante",
-        description = "Guarda un nuevo estudiante en el sistema"
-    )
-    public void guardar(@RequestBody Estudiante estudiante) {
-       this.estudianteService.guardar(estudiante);
+    @Operation(summary = "Guardar Estudiante", description = "Guarda un nuevo estudiante en el sistema")
+    public Response guardar(@RequestBody Estudiante estudiante) {
+        this.estudianteService.guardar(estudiante);
+        return Response.status(200).entity("Estudiante guardado exitosamente").build();
     }
- 
+
     @PUT
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_XML)
-    public void actualizar(@RequestBody Estudiante estudiante, @PathParam("id") Integer id) {
+    public Response actualizar(@RequestBody Estudiante estudiante, @PathParam("id") Integer id) {
         estudiante.setId(id);
-       this.estudianteService.actualizarPorId(estudiante);
+        this.estudianteService.actualizarPorId(estudiante);
+        return Response.status(200).entity("Estudiante actualizado exitosamente").build();
     }
- 
+
     @PATCH
     @Path("/{id}")
-    public void actualizarParcial(@RequestBody Estudiante estudiante, @PathParam("id") Integer id) {
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response actualizarParcial(@RequestBody Estudiante estudiante, @PathParam("id") Integer id) {
         estudiante.setId(id);
         Estudiante e = this.estudianteService.buscarPorId(id);
-        if(estudiante.getNombre() != null) {
+        if (estudiante.getNombre() != null) {
             e.setNombre(estudiante.getNombre());
         }
-        if(estudiante.getApellido() != null) {
+        if (estudiante.getApellido() != null) {
             e.setApellido(estudiante.getApellido());
         }
-        if(estudiante.getFechaNacimiento() != null) {
+        if (estudiante.getFechaNacimiento() != null) {
             e.setFechaNacimiento(estudiante.getFechaNacimiento());
         }
         this.estudianteService.actualizarParcialPorId(e);
+        return Response.status(200).entity("Estudiante actualizado parcialmente").build();
     }
- 
+
     @DELETE
     @Path("/{id}")
-    public void eliminar(@PathParam("id") Integer id) {
+    public Response eliminar(@PathParam("id") Integer id) {
         this.estudianteService.eliminarPorId(id);
+        return Response.status(200).entity("Estudiante eliminado exitosamente").build();
     }
 }
