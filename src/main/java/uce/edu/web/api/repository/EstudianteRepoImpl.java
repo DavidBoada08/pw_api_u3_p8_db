@@ -30,8 +30,7 @@ public class EstudianteRepoImpl implements IEstudianteRepo {
 
     @Override
     public void actualizarPorId(Estudiante estudiante) {
-        // Aquí se asume que el objeto estudiante ya tiene el ID establecido
-        // y se va a actualizar en la base de datos.
+        
         this.entityManager.merge(estudiante);
       
     }

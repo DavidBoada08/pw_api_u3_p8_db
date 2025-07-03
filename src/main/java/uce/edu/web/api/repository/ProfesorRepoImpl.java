@@ -2,7 +2,7 @@ package uce.edu.web.api.repository;
 
 import java.util.List;
 
-import com.arjuna.ats.internal.jdbc.drivers.modifiers.list;
+
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
@@ -28,6 +28,27 @@ public class ProfesorRepoImpl implements IProfesorRepo {
     public List<Profesor> seleccionarTodos() {
         TypedQuery<Profesor> query = this.entityManager.createQuery("SELECT p FROM Profesor p", Profesor.class);
         return query.getResultList();
+    }
+
+    @Override
+    public void actualizarPorId(Profesor profesor) {
+        this.entityManager.merge(profesor);
+       
+    }
+
+    @Override
+    public void actualizarParcialPorId(Profesor profesor) {
+       this.entityManager.merge(profesor);
+    }
+
+    @Override
+    public void borrarPorId(Integer id) {
+      this.entityManager.remove(this.seleccionarPorId(id));
+    }
+
+    @Override
+    public void insertar(Profesor profesor) {
+      this.entityManager.persist(profesor);
     }
     
 

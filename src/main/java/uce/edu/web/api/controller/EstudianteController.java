@@ -47,7 +47,18 @@ public class EstudianteController {
     @PATCH
     @Path("/{id}")
     public void actualizarParcial(Estudiante estudiante, @PathParam("id") Integer id) {
-        this.estudianteService.actualizarParcialPorId(estudiante);
+         estudiante.setId(id);
+        Estudiante existente = this.estudianteService.buscarPorId(id);
+        if (existente.getNombre() != null) {
+            existente.setNombre(estudiante.getNombre());
+        }
+        if (existente.getApellido() != null) {
+            existente.setApellido(estudiante.getApellido());
+        }
+        if (existente.getFechaNacimiento() != null) {
+            existente.setFechaNacimiento(estudiante.getFechaNacimiento());
+        }
+        this.estudianteService.actualizarParcialPorId(existente);
     }
 
     @DELETE
