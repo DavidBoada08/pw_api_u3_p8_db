@@ -24,9 +24,33 @@ public class ProfesorRepoImpl implements IProfesorRepo {
     }
 
     @Override
-    public List<Profesor> seleccionarTodos() {
-        TypedQuery<Profesor> query = this.entityManager.createQuery("SELECT p FROM Profesor p", Profesor.class);
+    public List<Profesor> seleccionarTodos(String materia) {
+        TypedQuery<Profesor> query = 
+        this.entityManager.createQuery(
+            "SELECT p FROM Profesor p where p.nateria=:materia",
+             Profesor.class);
+        query.setParameter("materia", materia);
         return query.getResultList();
+    }
+
+    @Override
+    public void actualizarPorId(Profesor profesor) {
+        this.entityManager.merge(profesor);
+    }
+
+    @Override
+    public void actualizarParcialPorId(Profesor profesor) {
+        this.entityManager.merge(profesor);
+    }
+
+    @Override
+    public void borrarPorId(Integer id) {
+        this.entityManager.remove(this.seleccionarPorId(id));
+    }
+
+    @Override
+    public void insertar(Profesor profesor) {
+        this.entityManager.persist(profesor);
     }
     
 

@@ -23,8 +23,11 @@ public class EstudianteTo {
         this.genero = genero;
         this.fechaNacimiento = fechaNacimiento;
 
-        URI todosHijos= uriInfo.getBaseUriBuilder().path(EstudianteController.class)
-        .path(EstudianteController.class,"obtenerHijosPorId").build(id);
+        URI todosHijos= uriInfo
+        .getBaseUriBuilder()
+        .path(EstudianteController.class)
+        .path(EstudianteController.class,
+        "obtenerHijosPorId").build(id);
     
     
         _links.put("hijos", todosHijos.toString());
