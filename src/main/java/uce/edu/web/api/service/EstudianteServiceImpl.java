@@ -1,11 +1,14 @@
 package uce.edu.web.api.service;
  
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import uce.edu.web.api.repository.IEstudianteRepo;
 import uce.edu.web.api.repository.modelo.Estudiante;
+import uce.edu.web.api.service.mapper.EstudianteMapper;
+import uce.edu.web.api.service.to.EstudianteTo;
  
 @ApplicationScoped
 public class EstudianteServiceImpl implements IEstudianteService {
@@ -13,26 +16,39 @@ public class EstudianteServiceImpl implements IEstudianteService {
     @Inject
     private IEstudianteRepo estudianteRepo;
  
+   
+    
     @Override
-    public Estudiante buscarPorId(Integer id) {
-        return this.estudianteRepo.seleccionarPorId(id);
-      
-     
-        
+    public EstudianteTo buscarPorIdTo(Integer id) {
+        Estudiante estudiante = this.estudianteRepo.seleccionarPorId(id);
+        return EstudianteMapper.toTo(estudiante);
     }
  
+   
+    
     @Override
-    public List<Estudiante> buscarTodos(String genero) {
-        return this.estudianteRepo.seleccionarTodos(genero);
+    public List<EstudianteTo> buscarTodosTo(String genero) {
+        List<Estudiante> estudiantes = this.estudianteRepo.seleccionarTodos(genero);
+        List<EstudianteTo> estudiantesTo = new ArrayList<>();
+        for (Estudiante estudiante : estudiantes) {
+            estudiantesTo.add(EstudianteMapper.toTo(estudiante));
+        }
+        return estudiantesTo;
     }
  
+  
+    
     @Override
-    public void actualizarPorId(Estudiante estudiante) {
+    public void actualizarPorIdTo(EstudianteTo estudianteTo) {
+        Estudiante estudiante = EstudianteMapper.toEntity(estudianteTo);
         this.estudianteRepo.actualizarPorId(estudiante);
     }
  
+    
+    
     @Override
-    public void actualizarParcialPorId(Estudiante estudiante) {
+    public void actualizarParcialPorIdTo(EstudianteTo estudianteTo) {
+        Estudiante estudiante = EstudianteMapper.toEntity(estudianteTo);
         this.estudianteRepo.actualizarParcialPorId(estudiante);
     }
  
@@ -41,9 +57,11 @@ public class EstudianteServiceImpl implements IEstudianteService {
         this.estudianteRepo.borrarPorId(id);
     }
  
+   
+    
     @Override
-    public void guardar(Estudiante estudiante) {
+    public void guardarTo(EstudianteTo estudianteTo) {
+        Estudiante estudiante = EstudianteMapper.toEntity(estudianteTo);
         this.estudianteRepo.insertar(estudiante);
     }
 }
- 

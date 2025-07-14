@@ -20,11 +20,9 @@ import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.UriInfo;
-import uce.edu.web.api.repository.modelo.Estudiante;
 import uce.edu.web.api.repository.modelo.Hijo;
 import uce.edu.web.api.service.IEstudianteService;
 import uce.edu.web.api.service.IHijoService;
-import uce.edu.web.api.service.mapper.EstudianteMapper;
 import uce.edu.web.api.service.to.EstudianteTo;
  
 @Path("/estudiantes")
@@ -44,7 +42,7 @@ public class EstudianteController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response consultarEstudiantePorId(@PathParam("id") Integer id, @Context UriInfo uriInfo) {
  
-        EstudianteTo estu = EstudianteMapper.toTo(this.estudianteService.buscarPorId(id));
+        EstudianteTo estu = this.estudianteService.buscarPorIdTo(id);
         estu.buildURI(uriInfo);
 
  
@@ -59,24 +57,24 @@ public class EstudianteController {
     public Response consultarEstudiantes(@QueryParam("genero") String genero,
             @QueryParam("provincia") String provincia) {
         System.out.println(provincia);
-        return Response.status(Response.Status.OK).entity(this.estudianteService.buscarTodos(genero)).build();
+        return Response.status(Response.Status.OK).entity(this.estudianteService.buscarTodosTo(genero)).build();
     }
  
     @POST
     @Path("")
     @Consumes(MediaType.APPLICATION_JSON)
     @Operation(summary = "Guardar Estudiante", description = "Guarda un nuevo estudiante en el sistema")
-    public Response guardar(@RequestBody Estudiante estudiante) {
-        this.estudianteService.guardar(estudiante);
+    public Response guardar(@RequestBody EstudianteTo estudianteTo) {
+        this.estudianteService.guardarTo(estudianteTo);
         return Response.status(Response.Status.CREATED).entity("Estudiante guardado exitosamente").build();
     }
  
     @PUT
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response actualizar(@RequestBody Estudiante estudiante, @PathParam("id") Integer id) {
-        estudiante.setId(id);
-        this.estudianteService.actualizarPorId(estudiante);
+    public Response actualizar(@RequestBody EstudianteTo estudianteTo, @PathParam("id") Integer id) {
+        estudianteTo.setId(id);
+        this.estudianteService.actualizarPorIdTo(estudianteTo);
         return Response.status(Response.Status.NO_CONTENT).build();
     }
  
@@ -84,9 +82,9 @@ public class EstudianteController {
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Operation(summary = "Actualizar Parcialmente Estudiante", description = "Actualiza parcialmente un estudiante existente")
-    public Response actualizarParcial(@RequestBody Estudiante estudiante, @PathParam("id") Integer id) {
-        estudiante.setId(id);
-        this.estudianteService.actualizarParcialPorId(estudiante);
+    public Response actualizarParcial(@RequestBody EstudianteTo estudianteTo, @PathParam("id") Integer id) {
+        estudianteTo.setId(id);
+        this.estudianteService.actualizarParcialPorIdTo(estudianteTo);
         return Response.status(Response.Status.NO_CONTENT).build();
     }
  

@@ -2,22 +2,20 @@ package uce.edu.web.api.service;
  
 import java.util.List;
 
-
-import uce.edu.web.api.repository.modelo.Estudiante;
+import uce.edu.web.api.service.to.EstudianteTo;
 
  
 public interface IEstudianteService {
  
-    public Estudiante buscarPorId(Integer id);
+    public EstudianteTo buscarPorIdTo(Integer id);
  
-    public List<Estudiante> buscarTodos(String genero);
+    public List<EstudianteTo> buscarTodosTo(String genero);
  
-    public void actualizarPorId(Estudiante estudiante);
+    public void actualizarPorIdTo(EstudianteTo estudianteTo);
  
-    public void actualizarParcialPorId(Estudiante estudiante);
+    public void actualizarParcialPorIdTo(EstudianteTo estudianteTo);
  
     public void eliminarPorId(Integer id);
  
-    public void guardar(Estudiante estudiante);
+    public void guardarTo(EstudianteTo estudianteTo);
 }
- 

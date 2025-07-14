@@ -14,9 +14,6 @@ public class EstudianteMapper {
         eTo.setFechaNacimiento(estudiante.getFechaNacimiento());
         eTo.setGenero(estudiante.getGenero());
         return eTo;
-
-
-
     }
 
     public static Estudiante toEntity( EstudianteTo estudianteTo){
@@ -30,8 +27,6 @@ public class EstudianteMapper {
         e.setGenero(estudianteTo.getGenero());
 
         return e;
-
-
     }
 
 }
