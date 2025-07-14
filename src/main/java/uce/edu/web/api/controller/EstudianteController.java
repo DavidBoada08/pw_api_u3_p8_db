@@ -1,28 +1,23 @@
 package uce.edu.web.api.controller;
  
-import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
-import org.hibernate.mapping.Array;
- 
-import jakarta.ws.rs.core.Context;
-import jakarta.ws.rs.core.MediaType;
- 
-import java.time.chrono.HijrahChronology;
-import java.util.ArrayList;
 import java.util.List;
- 
+
 import org.eclipse.microprofile.openapi.annotations.Operation;
- 
+import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
+
 import jakarta.inject.Inject;
-import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
-import jakarta.ws.rs.PATCH;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
+import jakarta.ws.rs.PATCH;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
+import jakarta.ws.rs.core.Context;
+import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.UriInfo;
 import uce.edu.web.api.repository.modelo.Estudiante;
@@ -85,31 +80,15 @@ public class EstudianteController {
         return Response.status(Response.Status.NO_CONTENT).build();
     }
  
-    /*
-     * @PATCH
-     *
-     * @Path("/{id}")
-     *
-     * @Consumes(MediaType.APPLICATION_JSON)
-     * public Response actualizarParcial(@RequestBody Estudiante
-     * estudiante, @PathParam("id") Integer id) {
-     * estudiante.setId(id);
-     * Estudiante e = this.estudianteService.buscarPorId(id);
-     * if (estudiante.getNombre() != null) {
-     * e.setNombre(estudiante.getNombre());
-     * }
-     * if (estudiante.getApellido() != null) {
-     * e.setApellido(estudiante.getApellido());
-     * }
-     * if (estudiante.getFechaNacimiento() != null) {
-     * e.setFechaNacimiento(estudiante.getFechaNacimiento());
-     * }
-     * this.estudianteService.actualizarParcialPorId(e);
-     * return
-     * Response.status(Response.Status.OK).entity("Actualización parcial exitosa").
-     * build();
-     * }
-     */
+    @PATCH
+    @Path("/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Operation(summary = "Actualizar Parcialmente Estudiante", description = "Actualiza parcialmente un estudiante existente")
+    public Response actualizarParcial(@RequestBody Estudiante estudiante, @PathParam("id") Integer id) {
+        estudiante.setId(id);
+        this.estudianteService.actualizarParcialPorId(estudiante);
+        return Response.status(Response.Status.NO_CONTENT).build();
+    }
  
     @DELETE
     @Path("/{id}")
@@ -125,4 +104,3 @@ public class EstudianteController {
         return this.hijoService.buscarPorEstudianteId(id);
     }
 }
- 

@@ -37,7 +37,27 @@ public class EstudianteRepoImpl implements IEstudianteRepo {
  
     @Override
     public void actualizarParcialPorId(Estudiante estudiante) {
-        this.entityManager.merge(estudiante);
+        // Buscar el estudiante existente en la base de datos
+        Estudiante estudianteExistente = this.entityManager.find(Estudiante.class, estudiante.getId());
+        
+        if (estudianteExistente != null) {
+            // Solo actualizar los campos que no sean null
+            if (estudiante.getNombre() != null) {
+                estudianteExistente.setNombre(estudiante.getNombre());
+            }
+            if (estudiante.getApellido() != null) {
+                estudianteExistente.setApellido(estudiante.getApellido());
+            }
+            if (estudiante.getFechaNacimiento() != null) {
+                estudianteExistente.setFechaNacimiento(estudiante.getFechaNacimiento());
+            }
+            if (estudiante.getGenero() != null) {
+                estudianteExistente.setGenero(estudiante.getGenero());
+            }
+            
+            // Hacer merge del objeto existente con los cambios
+            this.entityManager.merge(estudianteExistente);
+        }
     }
  
     @Override
